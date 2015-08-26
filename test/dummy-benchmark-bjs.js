@@ -1,4 +1,5 @@
-var log = new SimpleLogger("Dummy Benchmark");
+var logger = (typeof(SimpleLogger) != "undefined") && new SimpleLogger("Dummy Benchmark");
+var log = logger ? logger.log : console.log;
 
 var suite = new Benchmark.Suite;
 
@@ -13,9 +14,9 @@ suite
     sum2(100000);
   })
   .on("cycle", function(event) {
-    log.log(String(event.target));
+    log(String(event.target));
   })
   .on("complete", function() {
-    log.logg("Fastest is " + this.filter("fastest").pluck("name"));
+    log("\u2192 Fastest is " + this.filter("fastest").pluck("name"));
   })
   .run();

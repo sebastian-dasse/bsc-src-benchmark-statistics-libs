@@ -28,17 +28,10 @@ var SimpleLogger = function(title) {
     tbody.appendChild(tr);
   };
 
-  var log = function(text) {
-    _appendTableRow(text);
-    console.log(text);
-  };
-
-  var logg = function(text) {
-    log("\u2192 " + text);
-  };
-
   return {
-    log: log,
-    logg: logg
+    log: function(text) {
+      _appendTableRow(text);
+      console.log(text);
+    }
   };
 };
